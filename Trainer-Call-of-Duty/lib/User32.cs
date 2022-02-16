@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Trainer_Call_of_Duty.lib.data;
 
 namespace Trainer_Call_of_Duty.lib
 {
@@ -57,6 +58,9 @@ namespace Trainer_Call_of_Duty.lib
         /// </summary>
         [DllImport("user32.dll", SetLastError = true)]
         public static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+
+
+        [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr hwnd, out Rect lpRect);
         /// <summary>
         /// Retrieves a handle to the top-level window whose class name and window name match the specified strings.
         /// This function does not search child windows. This function does not perform a case-sensitive search.
@@ -76,6 +80,6 @@ namespace Trainer_Call_of_Duty.lib
         /// The function also sets the 32-bit (long) value at the specified offset into the extra window memory.
         /// </summary>
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
     }
 }
