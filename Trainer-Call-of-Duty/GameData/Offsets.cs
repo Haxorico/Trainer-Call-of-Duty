@@ -6,7 +6,7 @@
     public static int m_vecOrigin = 0x0;
     public static int m_vecViewOffset = 0x0;
 
-    public static int m_viewMatrix = 0xDBEB90;
+    public static uint pViewMatrix = 0xDBEB90;
 
     //"gamex86.dll"+0029D794
     public static int eFirstEntityAdr = 0x0029D794;
@@ -31,5 +31,7 @@
     public const string NAME_MODULE_CLIENT = "CoDSP.exe";
     public const string NAME_MODULE_ENGINE = "gamex86.dll";
     public const string NAME_WINDOW = "Call of Duty";
+
+    public static System.IntPtr MOD_BASE_ADR { get; set; }
 }
 
