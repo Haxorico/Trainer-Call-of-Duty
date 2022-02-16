@@ -11,7 +11,7 @@ namespace Trainer_Call_of_Duty.GameData
         public static void Update()
         {
             
-            IntPtr tmp = Memory.AddOffsetToIntPtr(Offsets.MOD_BASE_ADR, Offsets.pViewMatrix);
+            IntPtr tmp = Memory.AddOffsetToIntPtr(Offsets.ADR_BASE, Offsets.pViewMatrix);
             ViewMatrixOpenGL = Memory.GetViewMatrix_OpenGL(tmp);
             ViewMatrixDirectX = Memory.GetViewMatrix_DirectX(tmp);
         }

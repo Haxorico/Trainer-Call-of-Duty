@@ -83,7 +83,15 @@ namespace Trainer_Call_of_Duty.Helpers
         }
         public static IntPtr GetModuleAddress(string moduleName)
         {
-            return Modules[moduleName];
+            try
+            {
+                return Modules[moduleName];
+            }
+            catch
+            {
+                return IntPtr.Zero;
+            }
+              
         }
         public static byte GetByteFromAddress(IntPtr address)
         {

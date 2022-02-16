@@ -28,10 +28,11 @@
 
 
     public const string NAME_PROCESS = "CoDSP";
-    public const string NAME_MODULE_CLIENT = "CoDSP.exe";
+    public const string NAME_BASE = "CoDSP.exe";
     public const string NAME_MODULE_ENGINE = "gamex86.dll";
     public const string NAME_WINDOW = "Call of Duty";
 
-    public static System.IntPtr MOD_BASE_ADR { get; set; }
+    public static System.IntPtr ADR_BASE { get; set; }
+    public static System.IntPtr ADR_MOD_ENGINE { get; set; }
 }
 
