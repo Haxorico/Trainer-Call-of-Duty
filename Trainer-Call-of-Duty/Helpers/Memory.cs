@@ -18,9 +18,25 @@ namespace Trainer_Call_of_Duty.Helpers
         public static Process CurrentProcess { get; private set; }
         public static Dictionary<string, IntPtr> Modules = new Dictionary<string, IntPtr>();
    
+        public static void ResetGameModules()
+        {
+            Offsets.ADR_BASE = IntPtr.Zero;
+            Offsets.ADR_MOD_ENGINE = IntPtr.Zero;
+        }
+
+        public static void LoadGameModules()
+        {
+            //load the modules into the library
+            LoadModules();
+            if (Offsets.ADR_BASE == IntPtr.Zero)
+                Offsets.ADR_BASE = Memory.GetModuleAddress(Offsets.NAME_BASE);
+            if (Offsets.ADR_MOD_ENGINE == IntPtr.Zero)
+                Offsets.ADR_MOD_ENGINE = Memory.GetModuleAddress(Offsets.NAME_MODULE_ENGINE);
+        }
+
         public static void LoadModules()
         {
-
+            Modules.Clear();
             foreach (ProcessModule m in CurrentProcess.Modules)
             {
                 Modules.Add(m.ModuleName, m.BaseAddress);

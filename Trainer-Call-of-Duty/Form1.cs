@@ -72,7 +72,7 @@ namespace Trainer_Call_of_Duty
             {
                 lblGameStatus.ForeColor = Color.Red;
                 lblGameStatus.Text = "Game Status: N/A";
-                Memory.Modules.Clear();
+                Memory.ResetGameModules();
                 //#TODO Add a disalbe all function
                 return;
             }
@@ -82,16 +82,14 @@ namespace Trainer_Call_of_Duty
                 //change the label to let the user know the process is found
                 lblGameStatus.ForeColor = Color.Green;
                 lblGameStatus.Text = "Game Status: Running";
-                //load the modules into the library
-                Memory.LoadModules();
-                Offsets.ADR_BASE = Memory.GetModuleAddress(Offsets.NAME_BASE);
-                Offsets.ADR_MOD_ENGINE = Memory.GetModuleAddress(Offsets.NAME_MODULE_ENGINE);
                 //setup the static classes (player, refdef)
                 //Player.Address = Offsets.MOD_BASE_ADR + Offsets.pBase;
                 //Create hook for entityList
                 //hookEntityList();
             }
             //things to run every instance the game is found
+            if (Offsets.ADR_MOD_ENGINE == IntPtr.Zero || Offsets.ADR_BASE == IntPtr.Zero)
+                Memory.LoadGameModules();
             Player.Update();
             //refreshEnemyData();
 
