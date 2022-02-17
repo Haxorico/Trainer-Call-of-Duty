@@ -30,6 +30,7 @@
         {
             this.bgwProcessLooker = new System.ComponentModel.BackgroundWorker();
             this.lblGameStatus = new System.Windows.Forms.Label();
+            this.txtDebug = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // bgwProcessLooker
@@ -41,17 +42,26 @@
             // lblGameStatus
             // 
             this.lblGameStatus.AutoSize = true;
-            this.lblGameStatus.Location = new System.Drawing.Point(13, 67);
+            this.lblGameStatus.Location = new System.Drawing.Point(10, 10);
             this.lblGameStatus.Name = "lblGameStatus";
             this.lblGameStatus.Size = new System.Drawing.Size(94, 13);
             this.lblGameStatus.TabIndex = 0;
             this.lblGameStatus.Text = "Game Status: N/A";
             // 
+            // txtDebug
+            // 
+            this.txtDebug.Location = new System.Drawing.Point(80, 40);
+            this.txtDebug.Name = "txtDebug";
+            this.txtDebug.Size = new System.Drawing.Size(400, 300);
+            this.txtDebug.TabIndex = 1;
+            this.txtDebug.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(484, 351);
+            this.Controls.Add(this.txtDebug);
             this.Controls.Add(this.lblGameStatus);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -65,6 +75,7 @@
 
         private System.ComponentModel.BackgroundWorker bgwProcessLooker;
         private System.Windows.Forms.Label lblGameStatus;
+        private System.Windows.Forms.RichTextBox txtDebug;
     }
 }
 
