@@ -31,6 +31,7 @@
             this.bgwProcessLooker = new System.ComponentModel.BackgroundWorker();
             this.lblGameStatus = new System.Windows.Forms.Label();
             this.txtDebug = new System.Windows.Forms.RichTextBox();
+            this.bgwEntityListManager = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // bgwProcessLooker
@@ -56,6 +57,12 @@
             this.txtDebug.TabIndex = 1;
             this.txtDebug.Text = "";
             // 
+            // bgwEntityListManager
+            // 
+            this.bgwEntityListManager.WorkerReportsProgress = true;
+            this.bgwEntityListManager.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEntityListManager_DoWork);
+            this.bgwEntityListManager.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwEntityListManager_ProgressChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -76,6 +83,7 @@
         private System.ComponentModel.BackgroundWorker bgwProcessLooker;
         private System.Windows.Forms.Label lblGameStatus;
         private System.Windows.Forms.RichTextBox txtDebug;
+        private System.ComponentModel.BackgroundWorker bgwEntityListManager;
     }
 }
 

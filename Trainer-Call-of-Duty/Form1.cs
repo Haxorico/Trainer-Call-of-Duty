@@ -16,10 +16,19 @@ namespace Trainer_Call_of_Duty
 {
     public partial class Form1 : Form
     {
-
+        private List<Entity> Enemies = new List<Entity>();
         private bool isProcessRunning = false;
         private bool lastProcessState = false;
 
+
+        private bool enemyExists(IntPtr adr)
+        {
+            foreach (Entity e in Enemies)
+            {
+                if (e.Address == adr) return true;
+            }
+            return false;
+        }
 
         public Form1()
         {
@@ -30,6 +39,7 @@ namespace Trainer_Call_of_Duty
         {
 
             bgwProcessLooker.RunWorkerAsync();
+            bgwEntityListManager.RunWorkerAsync();
         }
 
         private void bgwProcessLooker_DoWork(object sender, DoWorkEventArgs e)
@@ -72,6 +82,7 @@ namespace Trainer_Call_of_Duty
             {
                 lblGameStatus.ForeColor = Color.Red;
                 lblGameStatus.Text = "Game Status: N/A";
+                Enemies.Clear();
                 Memory.ResetGameModules();
                 //#TODO Add a disalbe all function
                 return;
@@ -103,6 +114,34 @@ namespace Trainer_Call_of_Duty
             //enableInfiniteAmmo();
             //else
             //disableInfiniteAmmo();
+        }
+
+        private void bgwEntityListManager_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                System.Threading.Thread.Sleep(1000);
+                if (!isProcessRunning) continue;
+                Player.Update();
+                if (Enemies.Count == 0)
+                    Enemies.Add(new Entity(Player.Address));
+
+
+                for (int i = 0; i < Enemies.Count; i++)
+                {
+                    Enemies[i].Update();
+                    if (Enemies[i] != null && Enemies[i].NextEntity != IntPtr.Zero && !enemyExists(Enemies[i].NextEntity))
+                    {
+                        Enemies.Add(new Entity(Enemies[i].NextEntity));
+                    }
+                }
+
+            }
+        }
+
+        private void bgwEntityListManager_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
         }
     }
 }
