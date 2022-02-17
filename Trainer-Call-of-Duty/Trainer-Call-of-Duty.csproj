@@ -61,6 +61,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameData\Entity.cs" />
+    <Compile Include="GameData\Offsets.cs" />
+    <Compile Include="GameData\Player.cs" />
     <Compile Include="Helpers\Memory.cs" />
     <Compile Include="Helpers\U.cs" />
     <Compile Include="lib\data\Point.cs" />
@@ -75,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Overlay.resx">
       <DependentUpon>Overlay.cs</DependentUpon>
     </EmbeddedResource>
