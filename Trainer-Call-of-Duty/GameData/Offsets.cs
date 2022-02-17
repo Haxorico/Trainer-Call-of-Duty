@@ -9,14 +9,15 @@
     public static uint pViewMatrix = 0xDBEB90;
 
     //"gamex86.dll"+0029D794
-    public static int eFirstEntityAdr = 0x0012FA80;
+    public static uint eFirstEntityAdr = 0x0012FA80;
 
     public static int ePos1a = 0x20;
     public static int ePos2a = 0xC8;
     public static int ePos3a = 0xD4;
     public static int ePos4a = 0xE0;
-    public static int ePart2 = 0x10C;
-    public static int eCurrentHP = 0x1D8;
+    public static uint ePart2 = 0x10C;
+    public static uint eNextEntity = 0x60;
+    public static uint eCurrentHP = 0x1D8;
     public static int eMaxHP = 0x1DC;
 
     public static int ePos1b = 0x0C;
