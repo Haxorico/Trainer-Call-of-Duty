@@ -14,8 +14,7 @@ namespace Trainer_Call_of_Duty
 {
     public partial class Overlay : Form
     {
-        const string WINDOW_NAME = "Sniper Ghost Warrior 3";
-        IntPtr handle = User32.FindWindow(null, WINDOW_NAME);
+        IntPtr handle = User32.FindWindow(null, Offsets.NAME_WINDOW);
         bool windowActive { get; set; }
         bool isShowing { get; set; }
         List<Rectangle> emptyRects = new List<Rectangle>();
@@ -99,7 +98,7 @@ namespace Trainer_Call_of_Duty
 
         private void Overlay_Load(object sender, EventArgs e)
         {
-             //make the overlay transparent
+            //make the overlay transparent
             this.BackColor = Color.Wheat;
             this.TransparencyKey = Color.Wheat;
 
