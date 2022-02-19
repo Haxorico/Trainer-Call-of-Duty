@@ -39,6 +39,7 @@ namespace Trainer_Call_of_Duty.GameData
 
 		public void Update()
         {
+
 			Team = Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(Address, Offsets.eTeam));
 			CurrentHP = Memory.GetIntFromAddress(new IntPtr((uint)Address + Offsets.eCurrentHP));
 			MaximumHP = Memory.GetIntFromAddress(new IntPtr((uint)Address + Offsets.eMaxHP));
