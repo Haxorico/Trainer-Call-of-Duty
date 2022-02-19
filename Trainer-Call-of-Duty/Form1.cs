@@ -86,7 +86,7 @@ namespace Trainer_Call_of_Duty
                 Overlay.UpdateRect(index, rX, rY, (int)disX, (int)disY, boxColor, 2, msg);
              
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 return;
             }
@@ -198,7 +198,6 @@ namespace Trainer_Call_of_Duty
                 if (Enemies.Count == 0 || prev != Player.Address)
                 {
                     Enemies.Clear();
-                    //Enemies.Add(new Entity(Player.Address));
                 }
                 const uint jumper = 0x60;
                 IntPtr listAdr = new IntPtr((uint)Offsets.ADR_MOD_ENGINE + Offsets.mEntityListStart);
@@ -206,8 +205,8 @@ namespace Trainer_Call_of_Duty
                 {
                     IntPtr adr = new IntPtr(Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(listAdr, i*jumper)));
                     if (enemyExists(adr)) continue;
-                    int hp = Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(adr, Offsets.eCurrentHP));
-                    int team = Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(adr, Offsets.eTeam));
+                    int hp = Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(adr, (uint)Offsets.eCurrentHP));
+                    int team = Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(adr, (uint)Offsets.eTeam));
                     if (hp > 0 && hp <= 1000 && team == 144)
                     {
                         Enemies.Add(new Entity(adr));
@@ -215,37 +214,6 @@ namespace Trainer_Call_of_Duty
                     }
                 }
 
-                /*
-
-                for (int i = 0; i < Enemies.Count; i++)
-                {
-                    try
-                    {
-
-                        Enemies[i].Update();
-                        if (Enemies[i] != null && Enemies[i].NextEntity != IntPtr.Zero && !enemyExists(Enemies[i].NextEntity))
-                        {
-                            Enemies.Add(new Entity(Enemies[i].NextEntity));
-                            for (int j = 0; j < RECTS_PER_ENTITY; j++)
-                            {
-                                Overlay.AddRect(0, 0, 0, 0, Color.White);
-                            }
-                        }
-                        if (Enemies[i] != null && Enemies[i].NextEntityB != IntPtr.Zero && !enemyExists(Enemies[i].NextEntityB))
-                        {
-                            Enemies.Add(new Entity(Enemies[i].NextEntityB));
-                            for (int j = 0; j < RECTS_PER_ENTITY; j++)
-                            {
-                                Overlay.AddRect(0, 0, 0, 0, Color.White);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        break;
-                    }
-                }
-                */
                 int actionTime = (int)cycleTime.ElapsedMilliseconds;
                 int timeToWait = intervalMs - actionTime;
                 if (timeToWait > 0)
@@ -263,9 +231,6 @@ namespace Trainer_Call_of_Duty
             {
                 try
                 {
-
-
-
                     if (!isProcessRunning)
                     {
                         System.Threading.Thread.Sleep(1000);
@@ -308,7 +273,7 @@ namespace Trainer_Call_of_Duty
                         cycleTime.Reset();
                     //txtDebug.Text = debugText;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     continue;
 

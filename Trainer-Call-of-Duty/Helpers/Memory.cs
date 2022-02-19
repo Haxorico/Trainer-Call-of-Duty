@@ -25,9 +25,9 @@ namespace Trainer_Call_of_Duty.Helpers
             //load the modules into the library
             LoadModules();
             if (Offsets.ADR_BASE == IntPtr.Zero)
-                Offsets.ADR_BASE = Memory.GetModuleAddress(Offsets.NAME_BASE);
+                Offsets.ADR_BASE = GetModuleAddress(Offsets.NAME_BASE);
             if (Offsets.ADR_MOD_ENGINE == IntPtr.Zero)
-                Offsets.ADR_MOD_ENGINE = Memory.GetModuleAddress(Offsets.NAME_MODULE_ENGINE);
+                Offsets.ADR_MOD_ENGINE = GetModuleAddress(Offsets.NAME_MODULE_ENGINE);
         }
 
         public static void LoadModules()
@@ -140,7 +140,7 @@ namespace Trainer_Call_of_Duty.Helpers
 
         public static Vector2 GetVector2(IntPtr address)
         {
-            byte[] matData = Memory.GetBytesFromAddress(address, 8);
+            byte[] matData = GetBytesFromAddress(address, 8);
             Vector2 ret = new Vector2();
             ret.X = BitConverter.ToSingle(matData, 0);
             ret.Y = BitConverter.ToSingle(matData, 4);
@@ -148,7 +148,7 @@ namespace Trainer_Call_of_Duty.Helpers
         }
         public static Vector3 GetVector3(IntPtr address)
         {
-            byte[] matData = Memory.GetBytesFromAddress(address, 12);
+            byte[] matData = GetBytesFromAddress(address, 12);
             Vector3 ret = new Vector3();
             ret.X = BitConverter.ToSingle(matData, 0);
             ret.Y = BitConverter.ToSingle(matData, 4);
@@ -158,7 +158,7 @@ namespace Trainer_Call_of_Duty.Helpers
 
         public static Matrix GetViewMatrix_OpenGL(IntPtr address)
         {
-            byte[] matData = Memory.GetBytesFromAddress(address, 4 * 16);
+            byte[] matData = GetBytesFromAddress(address, 4 * 16);
             float[] ret = new float[16];
             for (int i = 0; i < 16; i++)
             {
@@ -188,7 +188,7 @@ namespace Trainer_Call_of_Duty.Helpers
 
         public static Matrix GetViewMatrix_DirectX(IntPtr address)
         {
-            byte[] matData = Memory.GetBytesFromAddress(address, 4 * 16);
+            byte[] matData = GetBytesFromAddress(address, 4 * 16);
             float[] mm = new float[16];
             for (int i = 0; i < 16; i++)
             {

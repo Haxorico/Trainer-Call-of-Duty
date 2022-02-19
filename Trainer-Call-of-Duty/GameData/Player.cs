@@ -11,10 +11,8 @@ namespace Trainer_Call_of_Duty.GameData
 
         public static void Update()
         {
-            
-            IntPtr tmp = Memory.AddOffsetToIntPtr(Offsets.ADR_BASE, Offsets.pViewMatrix);
-            ViewMatrixDirectX = Memory.GetViewMatrix_DirectX(tmp);
-            Address = Memory.AddOffsetToIntPtr(Offsets.ADR_MOD_ENGINE, Offsets.pLocalPlayer);
+            ViewMatrixDirectX = Memory.GetViewMatrix_DirectX(Memory.AddOffsetToIntPtr(Offsets.ADR_BASE, Offsets.pViewMatrix));
+            Address = Memory.AddOffsetToIntPtr(Offsets.ADR_MOD_ENGINE, (uint)Offsets.mLocalPlayer);
             CurrentHP = Memory.GetIntFromAddress(new IntPtr((uint)Address + Offsets.eCurrentHP));
         }
     }

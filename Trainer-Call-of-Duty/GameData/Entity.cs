@@ -11,7 +11,7 @@ namespace Trainer_Call_of_Duty.GameData
 {
     public class Entity
     {
-		private const int SIZE = 0x200;//not sure about size yet
+		private const uint SIZE = 0x200;//not sure about size yet
 		public IntPtr Address { get; private set; }
 		//public int Team { get; private set; }  
 		//public byte IsFiring { get; private set; }  
@@ -39,7 +39,15 @@ namespace Trainer_Call_of_Duty.GameData
 
 		public void Update()
         {
-
+			byte[] data = Memory.GetBytesFromAddress(Address, SIZE);
+			Team = BitConverter.ToInt32(data, Offsets.eTeam);
+			CurrentHP = BitConverter.ToInt32(data, Offsets.eCurrentHP);
+			MaximumHP = BitConverter.ToInt32(data, Offsets.eMaxHP);
+			Position01 = U.ByteToVector3(data, Offsets.ePos1);
+			Position02 = U.ByteToVector3(data, Offsets.ePos2);
+			Position03 = U.ByteToVector3(data, Offsets.ePos3);
+			Position04 = U.ByteToVector3(data, Offsets.ePos4);
+			/*
 			Team = Memory.GetIntFromAddress(Memory.AddOffsetToIntPtr(Address, Offsets.eTeam));
 			CurrentHP = Memory.GetIntFromAddress(new IntPtr((uint)Address + Offsets.eCurrentHP));
 			MaximumHP = Memory.GetIntFromAddress(new IntPtr((uint)Address + Offsets.eMaxHP));
@@ -47,7 +55,7 @@ namespace Trainer_Call_of_Duty.GameData
 			Position02 = Memory.GetVector3(new IntPtr((uint)Address + Offsets.ePos2a));
 			Position03 = Memory.GetVector3(new IntPtr((uint)Address + Offsets.ePos3a));
 			Position04 = Memory.GetVector3(new IntPtr((uint)Address + Offsets.ePos4a));
-
+			*/
 		}
 	}
 }
