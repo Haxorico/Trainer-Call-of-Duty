@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Trainer_Call_of_Duty.lib;
 
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 
 
@@ -169,6 +165,7 @@ namespace Trainer_Call_of_Duty.Helpers
                 ret[i] = BitConverter.ToSingle(matData, i * 4);
             }
             Matrix matrix = new Matrix();
+         
             matrix.M11 = ret[0];
             matrix.M12 = ret[1];
             matrix.M13 = ret[2];

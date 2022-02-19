@@ -32,6 +32,8 @@
             this.lblGameStatus = new System.Windows.Forms.Label();
             this.txtDebug = new System.Windows.Forms.RichTextBox();
             this.bgwEntityListManager = new System.ComponentModel.BackgroundWorker();
+            this.bgwFeatures = new System.ComponentModel.BackgroundWorker();
+            this.btnCopyDebug = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bgwProcessLooker
@@ -53,21 +55,34 @@
             // 
             this.txtDebug.Location = new System.Drawing.Point(80, 40);
             this.txtDebug.Name = "txtDebug";
-            this.txtDebug.Size = new System.Drawing.Size(400, 300);
+            this.txtDebug.Size = new System.Drawing.Size(400, 442);
             this.txtDebug.TabIndex = 1;
             this.txtDebug.Text = "";
             // 
             // bgwEntityListManager
             // 
-            this.bgwEntityListManager.WorkerReportsProgress = true;
             this.bgwEntityListManager.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwEntityListManager_DoWork);
-            this.bgwEntityListManager.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwEntityListManager_ProgressChanged);
+            // 
+            // bgwFeatures
+            // 
+            this.bgwFeatures.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwFeatures_DoWork);
+            // 
+            // btnCopyDebug
+            // 
+            this.btnCopyDebug.Location = new System.Drawing.Point(12, 40);
+            this.btnCopyDebug.Name = "btnCopyDebug";
+            this.btnCopyDebug.Size = new System.Drawing.Size(62, 23);
+            this.btnCopyDebug.TabIndex = 2;
+            this.btnCopyDebug.Text = "Copy";
+            this.btnCopyDebug.UseVisualStyleBackColor = true;
+            this.btnCopyDebug.Click += new System.EventHandler(this.btnCopyDebug_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 351);
+            this.ClientSize = new System.Drawing.Size(484, 494);
+            this.Controls.Add(this.btnCopyDebug);
             this.Controls.Add(this.txtDebug);
             this.Controls.Add(this.lblGameStatus);
             this.Name = "Form1";
@@ -84,6 +99,8 @@
         private System.Windows.Forms.Label lblGameStatus;
         private System.Windows.Forms.RichTextBox txtDebug;
         private System.ComponentModel.BackgroundWorker bgwEntityListManager;
+        private System.ComponentModel.BackgroundWorker bgwFeatures;
+        private System.Windows.Forms.Button btnCopyDebug;
     }
 }
 
